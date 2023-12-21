@@ -1,0 +1,11 @@
+name: test
+title:
+username:
+account: iavh
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4509671
+bundleId: 4941066
+url: https://iavh.shinyapps.io/test/
+when: 1629358607.31603
+lastSyncTime: 1629358607.31605

@@ -1,0 +1,12 @@
+name: IaVH_MFT
+title: IaVH_MFT
+username:
+account: jaap
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2584008
+bundleId: 3423732
+url: https://jaap.shinyapps.io/IaVH_MFT/
+when: 1595461680.84258
+asMultiple: FALSE
+asStatic: FALSE

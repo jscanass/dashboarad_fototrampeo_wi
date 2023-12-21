@@ -1,0 +1,3 @@
+site_name,lat,lon,departamento,collector,organization_name,n,ospMamiferos,ospAves,ndepl,start_date,end_date,ospTot,row,nspMamiferos,nspAves,nspTot,effort,rank_onsp,rank_onMamiferos,rank_onAves,rank_effort,rank_images,rank_ndepl
+Piedemonte Casanare,5.0956,-72.8055,Casanare,,Fundación Cunaguaro,30091.0,33.0,68.0,138.0,2020-11-11,2021-02-05,103.0,0.0,33.0,68.0,103.0,6680.0,1.0,1.0,1.0,1.0,1.0,1.0
+Rio Tillava,3.80056,-71.41203,Meta,,Gaica,2677.0,23.0,20.0,40.0,2020-11-07,2020-12-18,43.0,1.0,23.0,20.0,43.0,1336.0,2.0,2.0,2.0,2.0,2.0,2.0
