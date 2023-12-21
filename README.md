@@ -1,0 +1,1 @@
+# dashboarad_fototrampeo_wi
