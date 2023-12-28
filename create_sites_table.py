@@ -4,23 +4,33 @@
 import pandas as pd
 
 if __name__ == "__main__":
+    
 
     data = pd.read_csv("app/data.csv")
 
-    sites = pd.DataFrame(
-        index=["Piedemonte Casanare", "Rio Tillava"],
-        data={
-            "lat": [5.0956, 3.80056],
-            "lon": [-72.8055, -71.41203],
-            "departamento": ["Casanare", "Meta"],
-            "collector": ["", ""],
-            "organization_name": ["Fundación Cunaguaro", "Gaica"]
-        }
-    )
+    projects = pd.read_csv('data/projects.csv')
+    deployments = pd.read_csv('data/deployments.csv')
 
-    for i, site in enumerate(sites.index):
+    projects = projects[['project_id','project_short_name',
+                            'project_admin', 
+                        'project_admin_organization', 'country_code']]
 
-        df = data[data["site_name"] == site]
+    deployments = deployments[['subproject_name','project_id', 'placename','latitude','longitude']]
+
+    sites = pd.merge(projects, deployments, on='project_id')
+
+    # Select first place
+    sites = sites.drop_duplicates(subset=['project_id']).set_index('project_id')
+
+    sites = sites.rename(columns={'latitude':'lat' , 
+                                'longitude':'lon',
+                                'country_code':'departamento',
+                                'project_admin':'collector',
+                                'project_admin_organization':'organization_name'})
+
+    for row, site in enumerate(data['project_id'].unique()):
+
+        df = data[data["project_id"] == site]
 
         sites.loc[site, "n"] = len(df)
         sites.loc[site, "ospMamiferos"] = df[df["class"] == "Mammalia"]["sp_binomial"].nunique()
@@ -34,7 +44,7 @@ if __name__ == "__main__":
         # sites.loc[site, "ospTot"] = len(df)
         # sites.loc[site, "nspMamiferosCol"] = 94
         # sites.loc[site, "nspAvesCol"] = 110
-        sites.loc[site, "row"] = i
+        sites.loc[site, "row"] = row
 
         sites.loc[site, "nspMamiferos"] = sites.loc[site, "ospMamiferos"]
         sites.loc[site, "nspAves"] = sites.loc[site, "ospAves"]
@@ -52,5 +62,6 @@ if __name__ == "__main__":
     sites["rank_effort"] = sites["effort"].rank(method="max", ascending=False)
     sites["rank_images"] = sites["n"].rank(method="max", ascending=False)
     sites["rank_ndepl"] = sites["ndepl"].rank(method="max", ascending=False)
-
+    sites['site_name'] = sites.index
+    
     sites.to_csv("app/sites.csv", index_label="site_name")
