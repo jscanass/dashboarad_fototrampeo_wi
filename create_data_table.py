@@ -67,6 +67,10 @@ if __name__ == "__main__":
     # Concatenate all data into one DataFrame
     big_df = pd.concat(df_list, ignore_index=True)
 
+    # Add filter based on year
+    big_df['year'] = big_df['timestamp'].str.split('-').str[0]
+    big_df = big_df[big_df['year']=='2023']
+
     # Save the final result to a new CSV file
     big_df.to_csv(os.path.join(folder_path, 'images.csv'), index=False)
 
