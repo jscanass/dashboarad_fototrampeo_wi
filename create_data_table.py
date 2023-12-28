@@ -91,12 +91,12 @@ if __name__ == "__main__":
 
     df["scientific_name"] = df["genus"] + " " + df["species"]
 
-    #df["site_name"] = name
     df["project_admin"] = ""
     df["project_admin_organization"] = "Instituto Humboldt"
     
     df = df.rename(columns=MAP)
     df = df[COLS]
+    df['site_name'] = df['project_id']
 
     df.to_csv("app/data.csv", index=False)
 
