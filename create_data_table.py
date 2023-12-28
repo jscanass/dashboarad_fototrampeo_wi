@@ -15,7 +15,7 @@ MAP = {
 }
 
 COLS = [
-    "site_name",
+    "project_id",
     "deployment_name",
     "latitude",
     "longitude",
@@ -34,7 +34,9 @@ COLS = [
 
 if __name__ == "__main__":
 
-        # replace with your folder's path
+    # 1. Concatenate images csv
+
+    # replace with your folder's path
     folder_path = 'data'
 
     all_files = os.listdir(folder_path)
@@ -69,31 +71,28 @@ if __name__ == "__main__":
     big_df.to_csv(os.path.join(folder_path, 'images.csv'), index=False)
 
 
-    # Create data table 
+    # 2. Create data table 
 
     data = pd.DataFrame()
 
-    for path in glob.glob("data/*/"):
-        name = path.split("/")[-2]
-        images = pd.read_csv(os.path.join(path, "images.csv"))
-        deployments = pd.read_csv(os.path.join(path, "deployments.csv"))
+    images = pd.read_csv(os.path.join(folder_path, "images.csv"))
+    deployments = pd.read_csv(os.path.join(folder_path, "deployments.csv"))
 
-        df = pd.merge(images, deployments, on="deployment_id", how="left")
-        df = df.dropna(subset=["genus", "species"], how="any")
+    df = pd.merge(images, deployments, on=["project_id","deployment_id"], how="left")
+    df = df.dropna(subset=["genus", "species"], how="any")
 
-        mask1 = df["genus"].isin(["No CV Result", "Unknown"])
-        mask2 = df["species"].isin(["No CV Result", "Unknown"])
-        df = df[~mask1 & ~mask2]
+    mask1 = df["genus"].isin(["No CV Result", "Unknown"])
+    mask2 = df["species"].isin(["No CV Result", "Unknown"])
+    df = df[~mask1 & ~mask2]
 
-        df["scientific_name"] = df["genus"] + " " + df["species"]
+    df["scientific_name"] = df["genus"] + " " + df["species"]
 
-        df["site_name"] = name
-        df["project_admin"] = ""
-        df["project_admin_organization"] = "Instituto Humboldt"
+    #df["site_name"] = name
+    df["project_admin"] = ""
+    df["project_admin_organization"] = "Instituto Humboldt"
+    
+    df = df.rename(columns=MAP)
+    df = df[COLS]
 
-        df = df.rename(columns=MAP)
-        df = df[COLS]
+    df.to_csv("app/data.csv", index=False)
 
-        data = data.append(df)
-
-    data.to_csv("app/data.csv", index=False)
