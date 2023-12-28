@@ -38,11 +38,9 @@ if __name__ == "__main__":
     folder_path = 'data'
 
     all_files = os.listdir(folder_path)
-
     # Filter out non-CSV files
-    csv_files = [f for f in all_files if f.endswith('.csv')]
-
-    print(csv_files)
+    images_files = [f for f in all_files if 'images' in f]
+    csv_files = [f for f in images_files if f.endswith('.csv')]
 
     # Create a list to hold the dataframes
     df_list = []
