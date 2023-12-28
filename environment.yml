@@ -1,10 +1,11 @@
-name: shiny-mes-fototrampeo
+name: r-dashboard-env
 channels:
   - conda-forge
   - r
 dependencies:
   - r
   - r-cowplot
+  - r-dashboardthemes
   - r-dplyr
   - r-extrafont
   - r-ggmap
