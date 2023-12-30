@@ -2,7 +2,9 @@
 
 Código para reproducir un dashboard para elMes del Fototrampeo.
 
-## Instrucciones de uso:
+Para ver la aplicación ingrese a https://jcanas.shinyapps.io/DCT2023/
+
+## Reproducir la aplicación localmente:
 
 1. Clonar el repositorio 
 
@@ -35,8 +37,7 @@ python create_sites_table.py
 
 ```
 R -e "shiny::runApp('app')"
-``
-
+```
 
 Basado en https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/
 
