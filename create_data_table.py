@@ -98,5 +98,10 @@ if __name__ == "__main__":
     df = df[COLS]
     df['site_name'] = df['project_id']
 
+
+    projects = pd.read_csv('data/projects.csv')
+    projects = projects[['project_id','project_short_name']]
+    df = df.merge(projects, on='project_id', how='left')
+
     df.to_csv("app/data.csv", index=False)
 

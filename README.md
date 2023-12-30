@@ -1,13 +1,8 @@
-# dashboarad_fototrampeo_wi
-
 # WildlifeInsights---Dashboards---IAVH_MFT
-# READ.ME
 
-Code to recreate the IAVH dashboard for Mes del Fototrampeo.
-To run locally ensure all libraries are installed in the local machine and type at the R prompt:
+Código para reproducir un dashboard para elMes del Fototrampeo.
 
-
-Uso del 
+## Instrucciones de uso:
 
 1. Clonar el repositorio 
 
@@ -19,30 +14,28 @@ git clone https://github.com/jscanass/dashboarad_fototrampeo_wi
 
 ```
 conda env create -f environment.yml
-```
-
-3. Activar el entorno
-
-
-```
 conda activate r-dashboard-env
 ```
+
+3. Descomprimir archivos de WI y dejarlos en la carpeta data
+
 
 4. Preprocesa el archivo de WI
 
 ```
-:)
+cd dashboarad_fototrampeo_wi 
+python create_data_table.py
+python create_sites_table.py
+
 ```
 
-5. Corre el dashboard
+5. Agregar manualmente departamentos en site.csv y una fila con resultados acumulados
+
+6. Correr el dashboard
 
 ```
 R -e "shiny::runApp('app')"
 
 ```
 
-
-
-Previous project:
-
-https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/
+Basado en https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/

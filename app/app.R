@@ -12,8 +12,11 @@ file.copy("www/ProximaNova-Reg.ttf", "~/.fonts")
 file.copy("www/ProximaNova-Bold.ttf", "~/.fonts")
 system('fc-cache -f ~/.fonts')
 
-# iavhdata <- readRDS("iavhdata.rds")
+#Load data
+tableSites <- read.csv("sites.csv")
 iavhdata <- read.csv("data.csv")
+# tableDeployments <- readRDS("deploymentTable.rds")
+
 # Define UI for application 
 body <- dashboardBody(tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "style.css"),
@@ -28,7 +31,7 @@ body <- dashboardBody(tags$head(
         )
     ),
     box(width = 3, height = "80px",
-        selectInput("project", "Seleccione un proyecto:", choices = unique(iavhdata$site_name), selected = "Caño Cristales 2016.0")
+        selectInput("project", "Seleccione un proyecto:",  choices = unique(tableSites$project_short_name))
         ),
     box(width = 5, height = "80px",
         tags$b("Datos colectados por:"), tags$br(), tags$br(), tags$h4(textOutput("collector"))
@@ -62,23 +65,25 @@ body <- dashboardBody(tags$head(
 
 # Define server logic
 server <- function(input, output) {
-    #Load data
     
-#     tableSites <- readRDS("tableSites.rds")
-    tableSites <- read.csv("sites.csv")
-    nsites <- nrow(tableSites)
+    nsites <- nrow(tableSites) - 1
+    #ndeployments <- nrow(tableDeployments)
+
     bounds <- data.frame(lat = c(1.683247, 12.665921, 1.248316, -4.322823), lon = c(-79.137686, -71.675299, -66.744664, -69.937127))
     
-    
     # filter data by project
-    
+
     subRawData <- reactive({
-        iavhdata %>% filter(site_name == input$project)
+        if(input$project == "Días de cámara trampa - Datos 2023")
+        iavhdata
+        else
+            iavhdata %>% filter(project_short_name == input$project)
     })
     
     subTableData <- reactive({
-        tableSites %>% filter(site_name == input$project)
+        tableSites %>% filter(project_short_name == input$project)
     })
+
     
     output$speciesRichness <- renderPlot({
         makeSpeciesPanel(subTableData())
@@ -123,4 +128,4 @@ server <- function(input, output) {
 shinyApp(ui = dashboardPage(dashboardHeader(disable = T),
                             dashboardSidebar(disable = T),
                             body), 
-         server = server)
+        server = server)
