@@ -3,6 +3,10 @@
 """
 import pandas as pd
 
+from pathlib import Path
+from PIL import Image
+
+
 if __name__ == "__main__":
     
 
@@ -65,3 +69,16 @@ if __name__ == "__main__":
     sites['site_name'] = sites.index
     
     sites.to_csv("app/sites.csv", index_label="site_name")
+
+
+    n_resized = 0
+    for image_path in Path('app/www/favorites').rglob('*.jpg'):
+        try:
+            im = Image.open(image_path)
+            original_width, original_height = im.size
+            new_image = im.resize((390, int(original_height/(original_width/390))))
+            new_image.save(image_path)
+            n_resized += 1
+        except:
+            pass
+    print('Resized images:', n_resized)

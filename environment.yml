@@ -9,9 +9,12 @@ dependencies:
   - r-dplyr
   - r-extrafont
   - r-ggmap
+  - r-ggpattern 
   - r-ggplot2
   - r-gridextra
+  - r-here 
   - r-htmltools
+  - r-inext
   - r-leaflet
   - r-lubridate
   - r-magick
@@ -20,7 +23,9 @@ dependencies:
   - r-readxl
   - r-shiny
   - r-shinydashboard
+  - r-shinymanager
   - r-slickr
   - r-tidyr
   - r-tidyverse
   - r-treemapify
+  - pandas

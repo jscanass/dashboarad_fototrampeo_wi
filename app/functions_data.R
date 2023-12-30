@@ -30,19 +30,19 @@ drawInfoBoxes <- function(project, indicator){
   if(indicator == "images"){
     ind <- format(project$n, big.mark = ",")
     icon_file <- "logo_images.png"
-    title <- "imagenes"
+    title <- "Imágenes"
     pos <- round(project$rank_images,0)
   }
   else if(indicator == "cameras") {
     ind <- format(project$ndepl, big.mark = ",")
     icon_file <- "logo camera.png"
-    title <- "cámaras"
+    title <- "Cámaras trampa"
     pos <- round(project$rank_ndepl,0)
   }
   else if(indicator == "effort"){
     ind <- format(project$effort, big.mark = ",")
     icon_file <- "logo calendar.png"
-    title <- "días-cámara"
+    title <- "Días-cámara"
     pos <- round(project$rank_effort,0)
   }
   else{
