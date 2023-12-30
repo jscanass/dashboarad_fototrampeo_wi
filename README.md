@@ -35,7 +35,8 @@ python create_sites_table.py
 
 ```
 R -e "shiny::runApp('app')"
-```
+``
+
 
 Basado en https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/
 
