@@ -40,8 +40,10 @@ R -e "shiny::runApp('app')"
 Basado en https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/
 
 
-Tareas pendientes:
+### Tareas pendientes:
 
-(Revisar último preprocesamiento)
-- Cómo agregar columnas 'threatStatus''establishmentMeans''Est_conservacion''Endemismo''Am_y_End' a data?
-- Cómo calcular "Imágenes totales"
+- Revisar último preprocesamiento: Cómo agregar columnas 'threatStatus''establishmentMeans''Est_conservacion''Endemismo''Am_y_End' a data?
+- Revisar último preprocesamiento: Cómo calcular "Imágenes totales"
+- Incorporar tabla de deployments
+- Agregar curva de rarefracción
+

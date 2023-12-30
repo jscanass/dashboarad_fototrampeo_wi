@@ -43,17 +43,17 @@ body <- dashboardBody(tags$head(
     box(width = 4, height = "80px",
         tags$b("Fechas:"), tags$br(), tags$br(), tags$h4(textOutput("dateRange"))
         ),
-    box(width = 3, height = "460px",
+    box(width = 3, height = "420px",
         plotOutput("InfoBoxes")
         ),
     box(width = 5, height = "460px",
         plotOutput("numberofImagesperSpecies"), title = "Número de imágenes por especie"
         ),
     box(width = 4, height = "460px",
-        plotOutput("speciesCurve"), title = "Curva de acumulación de especies"
+        plotOutput("deployments"), title = "Instalaciones - eficiencia"
         ),
-    box(width = 3, height = "420px",
-        plotOutput("speciesRichness") #title = "Riqueza de especies"
+    box(width = 3,  height = "420px",
+        plotOutput("speciesRichness"), title = "Riqueza de especies"
         ),
     box(width = 5, height = "420px", align = "center", title = "Imágenes favoritas", tags$br(), tags$br(),
         slickROutput("cameraTrapImages", height = "420px")
@@ -62,7 +62,7 @@ body <- dashboardBody(tags$head(
         leafletOutput("map")
         ),
     fluidRow(
-        column(11, align = "right", tags$img(src = "Powered by WI.png", height = 50))
+        column(12, align = "right", tags$img(src = "Powered by WI.png", height = 50))
         )
 )
 
@@ -96,31 +96,6 @@ server <- function(input, output) {
     output$speciesRichness <- renderPlot({
             makeSpeciesPanel(subTableData())
         })
-    output$speciesCurve <- renderPlot({
-            
-        subset <- f.order.data(subRawData())
-        subset <- f.separate.events(subset, 1)
-        species_ind_observations <- subset %>% 
-            group_by(sp_binomial) %>% 
-            summarise(n_ind_observations = length(unique(grp))) %>% 
-            filter(sp_binomial != "No identificado")
-        
-        # calculate rarefaction curve
-        
-        res_rarefaction <- iNEXT(species_ind_observations$n_ind_observations, datatype = "abundance")
-        rarefaction_data <- res_rarefaction$iNextEst
-        
-        ggplot(rarefaction_data, aes(x = m, y = qD)) + 
-            geom_ribbon(aes(ymin = qD.LCL, ymax = qD.UCL), fill = "#6FC38C") + 
-            geom_line(data = filter(rarefaction_data, method == "interpolated"), size = 2) +
-            geom_line(data = filter(rarefaction_data, method == "extrapolated"), size = 1, linetype = 2) +
-            geom_point(data = filter(rarefaction_data, method == "observed"), size =5) +
-            labs(x = "Número de observaciones", y = "Número de especies") +
-            theme_bw()
-    })
-
-
-
 
     output$numberofImagesperSpecies <- renderPlot({
         makeSpeciesGraph(subRawData())
