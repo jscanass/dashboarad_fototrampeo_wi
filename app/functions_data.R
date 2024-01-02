@@ -93,14 +93,14 @@ makeInfoPanel <- function(sub) {
   plot2 <- drawInfoBoxes(sub, "cameras")
   plot3 <- drawInfoBoxes(sub, "effort")
   
-  grid.arrange(plot1, plot2, plot3, nrow = 3)
+  grid.arrange(plot1, plot2, plot3, nrow =  3)
 } # make information panel with operational statistics
 drawSpeciesDiversityBox <- function(site){
   
   #site <- data %>% filter(site_name == project)
   
   font <- "Proxima Nova"
-  title <- c("Especies", "Mamíf.", "Aves")
+  title <- c("Especies", "Mamíferos", "Aves")
   sizeTitles <- 7
   sizeNumbers <- 16
   sizePos <- 12
@@ -125,22 +125,22 @@ drawSpeciesDiversityBox <- function(site){
   #draw large species icon
   p  <- p + draw_image(species_icon, -0.3, 3, 2.3, 2.3)
   # print Numero de especies
-  p <- p + geom_text(color = "black", size = sizeTitles, aes(x = 3.6, y = 5, label = title[1], family = font))
+  p <- p + geom_text(color = "black", size = sizeTitles, aes(x = 4.7, y = 5, label = title[1], family = font))
   # print species diversity value + Pos. title
-  p <- p + geom_text(color = "black", size = sizeNumbers, aes(x = 3.1, y = 3.9, label = format(diversity_species[1], big.mark = ","), family = font, fontface = "bold"))
+  p <- p + geom_text(color = "black", size = sizeNumbers, aes(x = 4.6, y = 3.9, label = format(diversity_species[1], big.mark = ","), family = font, fontface = "bold"))
   #print position value and draw image trophy
 #   p <- p + geom_text(color = "black", size = sizePos, aes(x = 8, y = 3.9, label = ranks[1], family = font))
   #+ draw_image(trophy_icon, 8.4, 3.6, 1, 1)
   
   # Mammal stats
-  p <- p + geom_text(color = "black", size = sizeSubTitles, aes(x = 0.6, y = 2, label = title[2], family = font)) + geom_text(color = "black", size = sizeNumbers, aes(x = 0.45, y = 1, label = format(diversity_species[2], big.mark = ","), family = font, fontface = "bold"))
+  p <- p + geom_text(color = "black", size = sizeSubTitles, aes(x = 1.6, y = 2, label = title[2], family = font)) + geom_text(color = "black", size = sizeNumbers, aes(x = 1.45, y = 1, label = format(diversity_species[2], big.mark = ","), family = font, fontface = "bold"))
   #draw_image(trophy_icon, 3.5, 0.6, 1, 1)
   
   # shift the bird stats to align with the top position trophy
   shift <- 0.3
   
   #Bird stats
-  p + geom_text(color = "black", size = sizeSubTitles, aes(x = 5.5 + shift, y = 2, label = title[3], family = font)) + geom_text(color = "black", size = sizeNumbers, aes(x = 5.4 + shift, y = 1, label = format(diversity_species[3], big.mark = ","), family = font, fontface = "bold"))
+  p + geom_text(color = "black", size = sizeSubTitles, aes(x = 6.5 + shift, y = 2, label = title[3], family = font)) + geom_text(color = "black", size = sizeNumbers, aes(x = 6.4 + shift, y = 1, label = format(diversity_species[3], big.mark = ","), family = font, fontface = "bold"))
 } # draw species diversity box for dashboard
 makeSpeciesPanel <- function(project) {
   drawSpeciesDiversityBox(project)

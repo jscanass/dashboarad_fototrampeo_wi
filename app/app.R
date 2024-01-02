@@ -43,7 +43,7 @@ body <- dashboardBody(tags$head(
     box(width = 4, height = "80px",
         tags$b("Fechas:"), tags$br(), tags$br(), tags$h4(textOutput("dateRange"))
         ),
-    box(width = 3, height = "420px",
+    box(width = 3, height = "460px",
         plotOutput("InfoBoxes")
         ),
     box(width = 5, height = "460px",
@@ -87,11 +87,6 @@ server <- function(input, output) {
     subTableData <- reactive({
         tableSites %>% filter(project_short_name == input$project)
     })
-
-    
-    #output$speciesRichness <- renderPlot({
-    #    makeSpeciesPanel(subTableData())
-    #})
     
     output$speciesRichness <- renderPlot({
             makeSpeciesPanel(subTableData())
@@ -106,9 +101,9 @@ server <- function(input, output) {
     })
     
     output$cameraTrapImages <- renderSlickR({
-        path_to_images <- paste0("www/favorites/", subTableData()$project_short_name, "/")
+        path_to_images <- paste0("www/favorites/", subTableData()$site_name, "/")
         imgs <- list.files(path_to_images, full.names = TRUE)
-        slickR(imgs) + settings(autoplay = FALSE, adaptiveHeight = TRUE,pauseOnHover = TRUE)
+        slickR(imgs) + settings(autoplay = FALSE, adaptiveHeight = TRUE, pauseOnHover = TRUE)
     })
     
     output$map <- renderLeaflet({

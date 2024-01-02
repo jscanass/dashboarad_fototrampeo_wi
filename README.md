@@ -1,10 +1,10 @@
 # WildlifeInsights---Dashboards---IAVH_MFT
 
-Código para reproducir un dashboard para elMes del Fototrampeo.
+Código para reproducir un dashboard para el mes del Fototrampeo.
 
 Para ver la aplicación ingrese a https://jcanas.shinyapps.io/DCT2023/
 
-## Reproducir la aplicación localmente:
+## Reproducir la aplicación localmente y utilizar nuevos datos:
 
 1. Clonar el repositorio 
 
@@ -20,7 +20,7 @@ pip install pillow
 conda activate r-dashboard-env
 ```
 
-3. Descomprimir archivos de WI y dejarlos en la carpeta data/. Agregar imágenes representativas manualmente.
+3. Descomprimir archivos de WI y dejarlos en la carpeta data/. Agregar imágenes representativas manualmente dejando el mismo nombre que la columna site_name del archivo sites.csv
 
 
 4. Preprocesa el archivo de WI
