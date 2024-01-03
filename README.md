@@ -39,13 +39,29 @@ python create_sites_table.py
 R -e "shiny::runApp('app')"
 ```
 
-Basado en https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/
+
+7.  (Opcional) Una forma de desplegar la aplicación es usando [shynnyaps](https://www.shinyapps.io/). Para eso instale la dependencia y cree una cuenta. 
+
+```
+conda install conda-forge::r-rsconnec
+R -e "install.packages('rsconnect')"   
+```
+
+A sus credenciales sobre el archivo deploy y ejecute
+
+```
+Rscript deploy.R  
+```
 
 
 ### Tareas pendientes:
 
-- Revisar último preprocesamiento: Cómo agregar columnas 'threatStatus''establishmentMeans''Est_conservacion''Endemismo''Am_y_End' a data?
+- Revisar último preprocesamiento del proyecto (o [este](https://jaap.shinyapps.io/IaVH_MFT/
+)) original: Cómo agregar columnas 'threatStatus''establishmentMeans''Est_conservacion''Endemismo''Am_y_End' a data?
 - Revisar último preprocesamiento: Cómo calcular "Imágenes totales"
 - Incorporar tabla de deployments
 - Agregar curva de rarefracción
 
+
+
+Créditos a los autores iniciales del proyecto en https://github.com/ConservationInternational/WildlifeInsights---Dashboards---DDCT/
