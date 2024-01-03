@@ -19,12 +19,9 @@ library(extrafont)
 library(leaflet)
 library(htmltools)
 
-#font_import()
-#loadfonts()
+# font_import()
+# loadfonts()
 
-
-
-  
 # FUNCTIONS
 drawInfoBoxes <- function(project, indicator){
   if(indicator == "images"){
@@ -125,7 +122,7 @@ drawSpeciesDiversityBox <- function(site){
   #draw large species icon
   p  <- p + draw_image(species_icon, -0.3, 3, 2.3, 2.3)
   # print Numero de especies
-  p <- p + geom_text(color = "black", size = sizeTitles, aes(x = 4.7, y = 5, label = title[1], family = font))
+  p <- p + geom_text(color = "black", size = sizeTitles, aes(x = 4.7, y = 4.7, label = title[1], family = font))
   # print species diversity value + Pos. title
   p <- p + geom_text(color = "black", size = sizeNumbers, aes(x = 4.6, y = 3.9, label = format(diversity_species[1], big.mark = ","), family = font, fontface = "bold"))
   #print position value and draw image trophy

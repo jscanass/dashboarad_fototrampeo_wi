@@ -20,6 +20,8 @@ tableSites <- read.csv("sites.csv")
 iavhdata <- read.csv("data.csv")
 # tableDeployments <- readRDS("deploymentTable.rds")
 
+tableSites$row <- tableSites$row + 1
+
 # Define UI for application 
 body <- dashboardBody(tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "style.css"),
@@ -53,7 +55,7 @@ body <- dashboardBody(tags$head(
         plotOutput("deployments"), title = "Instalaciones - eficiencia"
         ),
     box(width = 3,  height = "420px",
-        plotOutput("speciesRichness"), title = "Riqueza de especies"
+        plotOutput("speciesRichness"), #title = "Riqueza de especies"
         ),
     box(width = 5, height = "420px", align = "center", title = "Imágenes favoritas", tags$br(), tags$br(),
         slickROutput("cameraTrapImages", height = "420px")
