@@ -198,8 +198,12 @@ makeSpeciesGraph <- function(subset) {
 
   subset <- head(subset, 15)
   subset$sp_binomial <- factor(subset$sp_binomial, levels = subset$sp_binomial[order(subset$nimages)])
-
-  ggplot(subset, aes(y = sp_binomial, x = nimages, fill = class)) + geom_bar(stat = "identity") + scale_x_log10() + xlab("Número de imágenes") + ylab("Especie") + geom_text(aes(label = nimages), nudge_x = -0.2, colour = "white") + theme_light() + scale_fill_manual(values = c("Aves" = "#338992", "Mammalia" = "#6FC38C", "Unknown" = "#DED78E", "Other" = "black"), guide = guide_legend(title = NULL), labels = c("Aves", "Mamíferos","No identificado", "Otro"))
+  ggplot(subset, 
+        aes(y = sp_binomial,
+        x = nimages, fill = class)) + geom_bar(stat = "identity") + scale_x_log10() + xlab("Número de imágenes") + ylab("Especie") + geom_text(aes(label = nimages), 
+        nudge_x = -0.2, 
+        colour = "white") + theme_light() + scale_fill_manual(values = c("Aves" = "#338992", "Mammalia" = "#6FC38C",  "Reptilia" = "#DED78E", "Other" = "black"), 
+        guide = guide_legend(title = NULL))
   
 } # species tally
 
